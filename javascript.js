@@ -12,7 +12,10 @@ function getHumanChoice() {
   if (question.toLowerCase() === "scissors") return "scissors";
   else if (question.toLowerCase() === "rock") return "rock";
   else if (question.toLowerCase() === "paper") return "paper";
-  else console.log("you didnt spell rock, paper, or scisors correctly");
+  else {
+    console.log("you didnt spell rock, paper, or scisors correctly");
+    getHumanChoice();
+  }
 }
 let humanScore = 0;
 let computerScore = 0;
@@ -29,8 +32,10 @@ function playGame() {
 }
 
 function playRound(humanChoice, computerChoice) {
-  if (humanChoice === computerChoice) console.log("DRAW CUNT");
-  else if (humanChoice === "paper") {
+  if (humanChoice === computerChoice) {
+    console.log("DRAW CUNT");
+    playRound(getHumanChoice(), getComputerChoice());
+  } else if (humanChoice === "paper") {
     if (computerChoice === "scissors") {
       console.log("lose cunt");
       computerScore++;
@@ -55,7 +60,9 @@ function playRound(humanChoice, computerChoice) {
       computerScore++;
     }
   }
-  console.log(humanScore, computerScore);
+  if (humanChoice != computerChoice) {
+    console.log(humanScore, computerScore);
+  }
 
   // rock beat scissor
   // scissor beat paper
